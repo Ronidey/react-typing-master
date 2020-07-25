@@ -1,0 +1,226 @@
+// ========= HELPER =============
+$green-light: #19982d;
+$green-lighter: #43a047;
+$green-dark: #335234;
+$red: red;
+
+$ff: 'Ubuntu', sans-serif;
+
+// ========= Base =============
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  line-height: 1.45;
+  font-family: $ff;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  border: 0;
+  outline: 0;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+// =========== Grid =============
+.app-container {
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  grid-auto-rows: minmax(150px, auto) minmax(150px, auto) minmax(100px, auto)
+    minmax(100px, auto);
+  grid-template-areas:
+    '. header .'
+    '. main .'
+    '. prevNext .'
+    '. footer .';
+  max-width: 992px;
+  margin: auto;
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+  max-width: 992px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.prev-next-wrapper {
+  align-self: center;
+  grid-area: prevNext;
+  display: flex;
+}
+
+.footer {
+  grid-area: footer;
+  align-self: center;
+}
+// =========== Grid Ends =============
+
+// =========== Modules =============
+// Modal
+.modal {
+  position: fixed;
+  background: rgba(25, 152, 44, 0.3);
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 200ms ease-in-out forwards;
+  opacity: 0;
+
+  &_content {
+    background: #ffffff;
+    text-align: center;
+    padding: 2rem 4rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    transform: scale(0);
+    animation: expand 400ms 200ms cubic-bezier(0, 0.89, 0.04, 1.26) forwards;
+    border-radius: 2px;
+  }
+
+  &_heading {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: $green-lighter;
+  }
+
+  &_copy {
+    margin: 0.5rem 0;
+
+    &:nth-of-type(1) {
+      color: $green-lighter;
+    }
+
+    &:nth-of-type(2) {
+      color: $red;
+    }
+  }
+}
+
+// Buttons
+.modal-btn {
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  background: $green-lighter;
+  color: #fff;
+}
+
+.modal-btn,
+.btn-change {
+  transition: all 200ms ease-in-out;
+  border-radius: 2px;
+}
+
+.btn-change {
+  align-self: flex-end;
+  background: transparent;
+  padding: 0.5rem 0.65rem;
+  color: $green-light;
+  font-size: 0.9rem;
+  border: 2px solid $green-light;
+  z-index: 1;
+}
+
+.btn-change-prev {
+  margin-right: 1rem;
+}
+
+.btn-change:hover:not(:disabled),
+.btn-change:focus:not(:disabled) {
+  color: #fff;
+  background: $green-light;
+}
+
+.btn-change:active,
+.modal-btn:active {
+  transform: scale(0.95);
+}
+
+// ============== Pages ===============
+// Header
+.header {
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.heading {
+  color: $green-lighter;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.subheading {
+  letter-spacing: 5px;
+  color: $green-dark;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+// Main
+.story {
+  line-height: 2;
+  font-size: 1.3rem;
+  color: $green-lighter;
+  margin-bottom: 4rem;
+}
+
+.story span {
+  display: inline-block;
+}
+
+.is-matched {
+  background: $green-light;
+  color: #fff;
+}
+
+// Footer
+.footer {
+  color: $green-dark;
+}
+
+// ============= Animation ================
+@keyframes fade-in {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes expand {
+  100% {
+    transform: scale(1);
+  }
+}
